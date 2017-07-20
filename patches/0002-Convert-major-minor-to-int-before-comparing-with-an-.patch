@@ -1,0 +1,26 @@
+From bd106435d54e55848fe0c279677f32924211076c Mon Sep 17 00:00:00 2001
+From: Tim Jenness <tjenness@lsst.org>
+Date: Thu, 15 Jun 2017 16:15:22 +0200
+Subject: [PATCH 2/2] Convert major/minor to int before comparing with an
+ integer
+
+---
+ share/SConscript | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/share/SConscript b/share/SConscript
+index 1d18d15..94a3e9c 100644
+--- a/share/SConscript
++++ b/share/SConscript
+@@ -27,6 +27,8 @@ if env['SHARED']:
+     # See: http://scons.tigris.org/issues/show_bug.cgi?id=1644
+     # Fixed in version 2.1.
+     major , minor, junk = SCons.__version__.split('.',2)
++    major = int(major)
++    minor = int(minor)
+     if major < 2 or (major == 2 and minor == 0):
+         env1.Append( LINKFLAGS = ["$__RPATH"] )
+ 
+-- 
+2.13.1
+
